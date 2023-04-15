@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugaspbm1/theme.dart';
 import 'package:tugaspbm1/widgets/button.dart';
 
 class HomePage extends StatefulWidget{
@@ -10,27 +11,27 @@ class HomePage extends StatefulWidget{
 
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _heightController = TextEditingController();
-  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _tinggi = TextEditingController();
+  final TextEditingController _berat = TextEditingController();
   double _bmiResult = 0.0;
   String _bmiCategory = '';
   int tinggi = 0;
   int berat = 0;
   
 void _calculateBMI() {
-    double height = double.parse(_heightController.text) / 100;
-    double weight = double.parse(_weightController.text);
+    double height = double.parse(_tinggi.text) / 100;
+    double weight = double.parse(_berat.text);
     double bmi = weight / (height * height);
     setState(() {
       _bmiResult = bmi;
       if (_bmiResult < 18.5) {
-        _bmiCategory = 'kurus';
+        _bmiCategory = 'Kurus';
       } else if (_bmiResult >= 18.5 && _bmiResult < 25) {
         _bmiCategory = 'Normal';
       } else if (_bmiResult >= 25 && _bmiResult < 30) {
         _bmiCategory = 'Gemuk';
       } else {
-        _bmiCategory = 'Obese';
+        _bmiCategory = 'Obesitas';
       }
     });
   }
@@ -79,7 +80,7 @@ void _calculateBMI() {
                         children: <Widget>[
                           Expanded(
                             child: TextField(
-                              controller: _heightController,
+                              controller: _tinggi,
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -97,7 +98,7 @@ void _calculateBMI() {
                           ),
                           Expanded(
                             child: TextField(
-                              controller: _weightController,
+                              controller: _berat,
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -119,8 +120,15 @@ void _calculateBMI() {
                           textColor: Color.fromARGB(255, 255, 255, 255),
                         onTap: () {_calculateBMI();}, 
                   ),
-                     
-                  Text("$_bmiResult")
+                  SizedBox(height: 30,),
+                  Center(
+                    child :
+                    Text("Nama : $username \n" "Hasil Kalkulasi : $_bmiResult",
+                    style: heading6.copyWith(color: textBlack),),
+                    
+                  
+                  )
+                  
                    
 
 
